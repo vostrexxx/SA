@@ -1,13 +1,13 @@
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Студенты')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Students')
 BEGIN
-    CREATE TABLE Студенты (
-        Идентификатор INT PRIMARY KEY IDENTITY(1,1),
-        Имя NVARCHAR(100),
-        Фамилия NVARCHAR(100)
+    CREATE TABLE Students (
+        ID INT PRIMARY KEY IDENTITY(1,1),
+        Name NVARCHAR(100),
+        Surname NVARCHAR(100)
     );
-    PRINT 'Таблица "Студенты" была успешно создана.';
+    PRINT 'The "Students" table has been successfully created.';
 END
 ELSE
 BEGIN
-    PRINT 'Таблица "Студенты" уже существует.';
+    PRINT 'The "Students" table already exists.';
 END;
