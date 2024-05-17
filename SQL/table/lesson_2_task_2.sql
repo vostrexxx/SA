@@ -1,11 +1,11 @@
--- Check if the table "Students" exists
+-- Checkin if the table STUDENTS exists
 IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'Students')
 BEGIN
-    -- Check if the column "Exam Score" exists in the "Students" table
+    -- Checkin if the column EXAM SCORE exists in the STUDENTS 
     IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS
                    WHERE TABLE_NAME = 'Students' AND COLUMN_NAME = 'Exam Score')
     BEGIN
-        -- Add the column "Exam Score" to the "Students" table
+        -- Add the column EXAM SCORE to the STUDENTS table
         ALTER TABLE Students
         ADD [Exam Score] INT;
         
