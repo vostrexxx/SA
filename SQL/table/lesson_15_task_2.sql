@@ -58,4 +58,4 @@ BEGIN CATCH
     RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState);
 END CATCH;
 GO
-select * from Directions;
+SELECT * FROM Directions;
