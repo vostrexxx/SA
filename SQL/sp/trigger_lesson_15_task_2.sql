@@ -23,3 +23,5 @@ BEGIN
     WHERE D.DirectionName IN (SELECT DISTINCT Direction FROM inserted);
 END
 GO
+
+SELECT * FROM sys.triggers;

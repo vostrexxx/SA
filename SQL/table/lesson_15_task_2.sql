@@ -59,3 +59,15 @@ BEGIN CATCH
 END CATCH;
 GO
 SELECT * FROM Directions;
+
+SELECT 
+    DirectionCode,
+    DirectionName,
+    MinScore,
+    TotalSeats,
+    CASE 
+        WHEN IsEnrollmentClosed = 1 THEN 'true'
+        ELSE 'false'
+    END AS IsEnrollmentClosed
+FROM 
+    Directions;
