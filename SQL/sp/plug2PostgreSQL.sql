@@ -1,31 +1,33 @@
-CREATE OR REPLACE FUNCTION send_account_session_and_product(
-    p_account_id INT,
-    p_session_id INT,
-    p_product_name VARCHAR
-) RETURNS TABLE (
-    user_id INT,
-    product_type VARCHAR,
-    user_type VARCHAR,
+CREATE OR REPLACE FUNCTION insert_and_fetch_data(
+    account_id INT,
     session_id INT,
-    status INT
-) AS $$
+    product_name VARCHAR
+)
+RETURNS SETOF RECORD AS $$
 BEGIN
+	-- 1st dataset
+    RETURN QUERY
+    SELECT 
+        t.user_id, 
+        t.product_type, 
+        t.user_type
+    FROM 
+    (
+        VALUES
+        (1, 'Electronics', 'Regular'),
+        (2, 'Books', 'Premium')
+    ) AS t (user_id, product_type, user_type);
 
-    RETURN QUERY 
+    -- 2nd dataset
+    RETURN QUERY
     SELECT 
-        1 AS user_id, 
-        'TypeA' AS product_type, 
-        'Type1' AS user_type, 
-        p_session_id AS session_id, 
-        0 AS status
-    UNION ALL
-    SELECT 
-        2 AS user_id, 
-        'TypeB' AS product_type, 
-        'Type2' AS user_type, 
-        p_session_id AS session_id, 
-        0 AS status;
+        t.session_id, 
+        t.status
+    FROM 
+    (
+        VALUES
+        (session_id, 'Pending'),
+        (session_id + 1, 'Completed')
+    ) AS t (session_id, status);
 END;
 $$ LANGUAGE plpgsql;
-
-SELECT * FROM send_account_session_and_product(1, 123, 'ProductX');
