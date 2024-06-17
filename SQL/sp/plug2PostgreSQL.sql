@@ -24,3 +24,15 @@ BEGIN
     RETURN NEXT second_ref;
 END;
 $$ LANGUAGE plpgsql;
+
+-- call
+BEGIN;
+SELECT InsertAndFetchData(123, 10, 'Smartphone');
+
+-- get 1st cursor
+FETCH ALL IN "first_ref";
+
+-- get 2nd cursor
+FETCH ALL IN "second_ref";
+
+COMMIT;
