@@ -39,3 +39,5 @@ BEGIN
     ) AS t(session_id, status);
 END;
 $$ LANGUAGE plpgsql;
+
+SELECT * FROM FetchUserData(123, 10, 'Smartphone');
